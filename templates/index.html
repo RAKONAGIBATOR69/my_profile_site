@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru" class="light-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wizonow - Профиль</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle">
+            <button id="themeBtn" class="theme-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Main Profile Card -->
+        <div class="profile-card">
+            <div class="avatar-container">
+                <div class="avatar-wrapper">
+                    <img src="{{ avatar_url }}" alt="Avatar" class="avatar">
+                    <div class="avatar-glow"></div>
+                </div>
+            </div>
+            
+            <h1 class="username" id="username">
+                @{{ name }}
+                <i class="fas fa-external-link-alt link-icon"></i>
+            </h1>
+            
+            <p class="bio">{{ bio }}</p>
+            
+            <!-- Animated Stats -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Бит-треков</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="42">0</div>
+                    <div class="stat-label">Проектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% Вайба</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-section">
+            <h2>Мои скиллы</h2>
+            <div class="skills-grid">
+                {% for skill in skills %}
+                <div class="skill-item">
+                    <span class="skill-text">{{ skill }}</span>
+                    <div class="skill-progress"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Fun Facts -->
+        <div class="fun-facts">
+            <h2>Забавные факты</h2>
+            <div class="facts-carousel">
+                {% for fact in fun_facts %}
+                <div class="fact-item">
+                    <i class="fas fa-sparkle"></i>
+                    <span>{{ fact }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="float-circle circle-1"></div>
+            <div class="float-circle circle-2"></div>
+            <div class="float-circle circle-3"></div>
+        </div>
+    </div>
+
+    <!-- Background Blur Effect -->
+    <div class="bg-blur" id="bgBlur"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+              </html>
