@@ -1,15 +1,18 @@
+// Создание фиолетовых звезд
 function createStars() {
     const starsContainer = document.getElementById('stars');
-    const starsCount = 100;
+    const starsCount = 150;
     
     for (let i = 0; i < starsCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
-
+        
+        // Случайные параметры звезд
         const size = Math.random() * 3 + 1;
         const posX = Math.random() * 100;
         const duration = Math.random() * 10 + 5;
         const delay = Math.random() * 5;
+        const opacity = Math.random() * 0.7 + 0.3;
         
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
@@ -17,38 +20,27 @@ function createStars() {
         star.style.top = `-${size}px`;
         star.style.animationDuration = `${duration}s`;
         star.style.animationDelay = `${delay}s`;
-        star.style.opacity = Math.random() * 0.7 + 0.3;
+        star.style.opacity = opacity;
+        
+        // Случайный фиолетовый оттенок
+        const purpleShades = ['#BB8FCE', '#A569BD', '#8E44AD', '#7D3C98'];
+        const randomColor = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+        star.style.background = randomColor;
         
         starsContainer.appendChild(star);
     }
 }
 
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     createStars();
     
-    const themeBtn = document.getElementById('themeBtn');
-    const htmlElement = document.documentElement;
-
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    htmlElement.className = savedTheme + '-theme';
-    updateThemeIcon();
-
-    themeBtn.addEventListener('click', () => {
-        const isDark = htmlElement.classList.contains('dark-theme');
-        htmlElement.className = isDark ? 'light-theme' : 'dark-theme';
-        localStorage.setItem('theme', isDark ? 'light' : 'dark');
-        updateThemeIcon();
-    });
-
-    function updateThemeIcon() {
-        const isDark = htmlElement.classList.contains('dark-theme');
-        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-
+    // Клик по username для перехода в Telegram
     document.getElementById('username').addEventListener('click', () => {
         window.open('https://t.me/wizonow', '_blank');
     });
 
+    // Анимированные счетчики
     function animateCounter(element, target) {
         let current = 0;
         const increment = target / 100;
@@ -78,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     observer.observe(document.querySelector('.stats'));
 
+    // Эффект размытия фона
     document.addEventListener('click', (e) => {
         const bgBlur = document.getElementById('bgBlur');
         if (e.target.closest('.profile-card, .skills-section, .fun-facts')) {
@@ -85,23 +78,11 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => bgBlur.classList.remove('active'), 300);
         }
     });
-  
-    document.addEventListener('mousemove', (e) => {
-        const floatingElements = document.querySelectorAll('.float-circle');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        floatingElements.forEach((element, index) => {
-            const speed = (index + 1) * 0.5;
-            const x = (mouseX - 0.5) * 20 * speed;
-            const y = (mouseY - 0.5) * 20 * speed;
-            element.style.transform = `translate(${x}px, ${y}px) rotate(${x}deg)`;
-        });
-    });
 
+    // Ripple эффект
     document.addEventListener('click', (e) => {
-        if (e.target.closest('.skill-item, .fact-item, .theme-btn')) {
-            const element = e.target.closest('.skill-item, .fact-item, .theme-btn');
+        if (e.target.closest('.skill-item, .fact-item')) {
+            const element = e.target.closest('.skill-item, .fact-item');
             const ripple = document.createElement('span');
             const rect = element.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
@@ -111,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ripple.style.cssText = `
                 position: absolute;
                 border-radius: 50%;
-                background: rgba(255, 255, 255, 0.6);
+                background: rgba(187, 143, 206, 0.6);
                 transform: scale(0);
                 animation: ripple 0.6s linear;
                 width: ${size}px;
@@ -128,6 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => ripple.remove(), 600);
         }
     });
+
+    // Добавление CSS для ripple анимации
     const style = document.createElement('style');
     style.textContent = `
         @keyframes ripple {
