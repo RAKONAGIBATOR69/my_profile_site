@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wizonow - Киберпространство</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Анимированный фон с звездами -->
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <!-- Переключатель темы -->
+        <div class="theme-toggle">
+            <button id="themeBtn" class="theme-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <!-- Основная карточка профиля -->
+        <div class="profile-card">
+            <div class="avatar-container">
+                <div class="avatar-wrapper">
+                    {% if avatar_url and avatar_url != "https://ibb.co/ycLSBthj" %}
+                    <img src="{{ avatar_url }}" alt="Avatar" class="avatar" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
+                    {% endif %}
+                    <div id="avatarFallback" class="avatar-fallback">
+                        WZ
+                    </div>
+                    <div class="avatar-glow"></div>
+                </div>
+            </div>
+            
+            <h1 class="username" id="username">
+                @{{ name }}
+                <i class="fas fa-external-link-alt link-icon"></i>
+            </h1>
+            
+            <p class="bio">{{ bio }}</p>
+            
+            <!-- Анимированная статистика -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">БИТ-ТРЕКОВ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="42">0</div>
+                    <div class="stat-label">ПРОЕКТОВ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% ВАЙБА</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция навыков -->
+        <div class="skills-section">
+            <h2>МОИ НАВЫКИ</h2>
+            <div class="skills-grid">
+                {% for skill in skills %}
+                <div class="skill-item">
+                    <span class="skill-text">{{ skill }}</span>
+                    <div class="skill-progress"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Забавные факты -->
+        <div class="fun-facts">
+            <h2>ЦИФРОВОЙ СЛЕД</h2>
+            <div class="facts-carousel">
+                {% for fact in fun_facts %}
+                <div class="fact-item">
+                    <i class="fas fa-sparkle"></i>
+                    <span>{{ fact }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Плавающие элементы -->
+        <div class="floating-elements">
+            <div class="float-circle circle-1"></div>
+            <div class="float-circle circle-2"></div>
+            <div class="float-circle circle-3"></div>
+        </div>
+    </div>
+
+    <!-- Эффект размытия фона -->
+    <div class="bg-blur" id="bgBlur"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
