@@ -1,35 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru" class="dark-theme">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wizonow - Киберпространство</title>
+    <title>wizonow - Фиолетовая Вселенная</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Анимированный фон с звездами -->
+    <!-- Анимированный фон с фиолетовыми звездами -->
     <div class="stars" id="stars"></div>
     
     <div class="container">
-        <!-- Переключатель темы -->
-        <div class="theme-toggle">
-            <button id="themeBtn" class="theme-btn">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-
         <!-- Основная карточка профиля -->
         <div class="profile-card">
             <div class="avatar-container">
                 <div class="avatar-wrapper">
-                    {% if avatar_url and avatar_url != "https://ibb.co/ycLSBthj" %}
-                    <img src="{{ avatar_url }}" alt="Avatar" class="avatar" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
-                    {% endif %}
-                    <div id="avatarFallback" class="avatar-fallback">
-                        WZ
-                    </div>
+                    <div class="avatar-fallback"></div>
                     <div class="avatar-glow"></div>
                 </div>
             </div>
@@ -45,22 +33,22 @@
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number" data-target="24">0</div>
-                    <div class="stat-label">БИТ-ТРЕКОВ</div>
+                    <div class="stat-label">Бит-треков</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-target="42">0</div>
-                    <div class="stat-label">ПРОЕКТОВ</div>
+                    <div class="stat-label">Проектов</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-target="99">0</div>
-                    <div class="stat-label">% ВАЙБА</div>
+                    <div class="stat-label">% Вайба</div>
                 </div>
             </div>
         </div>
 
         <!-- Секция навыков -->
         <div class="skills-section">
-            <h2>МОИ НАВЫКИ</h2>
+            <h2>Мои Навыки</h2>
             <div class="skills-grid">
                 {% for skill in skills %}
                 <div class="skill-item">
@@ -73,7 +61,7 @@
 
         <!-- Забавные факты -->
         <div class="fun-facts">
-            <h2>ЦИФРОВОЙ СЛЕД</h2>
+            <h2>Факты Обо Мне</h2>
             <div class="facts-carousel">
                 {% for fact in fun_facts %}
                 <div class="fact-item">
