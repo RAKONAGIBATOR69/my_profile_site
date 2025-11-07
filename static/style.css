@@ -4,38 +4,30 @@
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-    --bg-color: #000000;
+    --primary-gradient: linear-gradient(135deg, #8B5FBF 0%, #6A3093 100%);
+    --secondary-gradient: linear-gradient(135deg, #A569BD 0%, #8E44AD 100%);
+    --accent-color: #BB8FCE;
+    --bg-color: #0a0014;
     --text-color: #ffffff;
-    --card-bg: rgba(0, 0, 0, 0.3);
-    --border-color: rgba(255, 255, 255, 0.3);
-    --shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
-    --neon-glow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5);
-}
-
-.light-theme {
-    --bg-color: #0a0a0a;
-    --text-color: #e0e0e0;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --border-color: rgba(255, 255, 255, 0.2);
-    --shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+    --card-bg: rgba(139, 95, 191, 0.15);
+    --border-color: rgba(187, 143, 206, 0.4);
+    --shadow: 0 8px 32px rgba(139, 95, 191, 0.3);
+    --neon-glow: 0 0 15px rgba(187, 143, 206, 0.6), 0 0 30px rgba(139, 95, 191, 0.4);
 }
 
 body {
-    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-family: 'Jura', 'Orbitron', sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
-    transition: all 0.3s ease;
     overflow-x: hidden;
     position: relative;
 }
 
-/* Анимированный фон с звездами */
+/* Анимированный фон с фиолетовыми звездами */
 .stars {
     position: fixed;
     top: 0;
@@ -48,7 +40,7 @@ body {
 
 .star {
     position: absolute;
-    background: white;
+    background: #BB8FCE;
     border-radius: 50%;
     animation: fall linear infinite;
 }
@@ -66,33 +58,6 @@ body {
     padding: 20px;
     position: relative;
     z-index: 1;
-}
-
-/* Переключатель темы */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.theme-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    box-shadow: var(--neon-glow);
-}
-
-.theme-btn:hover {
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 1);
 }
 
 /* Карточка профиля */
@@ -141,34 +106,15 @@ body {
     height: 150px;
 }
 
-.avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid transparent;
-    background: var(--secondary-gradient) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    transition: all 0.3s ease;
-    box-shadow: var(--neon-glow);
-}
-
 .avatar-fallback {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: var(--secondary-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    border: 2px solid white;
+    background: linear-gradient(135deg, #8B5FBF 0%, #6A3093 100%);
+    border: 3px solid var(--accent-color);
     box-shadow: var(--neon-glow);
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .avatar-glow {
@@ -179,58 +125,62 @@ body {
     bottom: -5px;
     border-radius: 50%;
     background: var(--secondary-gradient);
-    filter: blur(15px);
+    filter: blur(20px);
     opacity: 0;
     transition: all 0.3s ease;
     z-index: -1;
 }
 
 .avatar-wrapper:hover .avatar-glow {
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
-.avatar-wrapper:hover .avatar {
+.avatar-wrapper:hover .avatar-fallback {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 40px rgba(187, 143, 206, 0.8);
 }
 
 /* Имя пользователя */
 .username {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 15px;
-    background: var(--secondary-gradient);
+    background: linear-gradient(135deg, #E8DAEF 0%, #BB8FCE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     transition: all 0.3s ease;
     font-family: 'Orbitron', monospace;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(187, 143, 206, 0.5);
+    text-align: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .username:hover {
-    transform: translateY(-2px);
-    text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    transform: translateY(-3px);
+    text-shadow: 0 0 25px rgba(232, 218, 239, 0.8);
 }
 
 .link-icon {
-    font-size: 1rem;
-    opacity: 0.7;
+    font-size: 1.2rem;
+    opacity: 0.8;
 }
 
 /* Биография */
 .bio {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     opacity: 0.9;
     margin-bottom: 30px;
     line-height: 1.6;
     font-weight: 500;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Jura', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 /* Статистика */
@@ -245,22 +195,24 @@ body {
 }
 
 .stat-number {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: bold;
-    background: var(--secondary-gradient);
+    background: linear-gradient(135deg, #E8DAEF 0%, #BB8FCE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: 'Orbitron', monospace;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(187, 143, 206, 0.5);
 }
 
 .stat-label {
-    font-size: 1rem;
-    opacity: 0.8;
-    margin-top: 5px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-top: 8px;
     font-weight: 600;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Jura', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Секция навыков */
@@ -278,13 +230,15 @@ body {
 .skills-section h2 {
     text-align: center;
     margin-bottom: 25px;
-    background: var(--secondary-gradient);
+    background: linear-gradient(135deg, #E8DAEF 0%, #BB8FCE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(187, 143, 206, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .skills-grid {
@@ -294,15 +248,16 @@ body {
 
 .skill-item {
     position: relative;
-    padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    padding: 20px;
+    background: rgba(187, 143, 206, 0.1);
+    border-radius: 15px;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     overflow: hidden;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Jura', sans-serif;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 .skill-item:hover {
@@ -341,13 +296,15 @@ body {
 .fun-facts h2 {
     text-align: center;
     margin-bottom: 25px;
-    background: var(--secondary-gradient);
+    background: linear-gradient(135deg, #E8DAEF 0%, #BB8FCE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(187, 143, 206, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .facts-carousel {
@@ -360,14 +317,14 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    padding: 20px;
+    background: rgba(187, 143, 206, 0.1);
+    border-radius: 15px;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Jura', sans-serif;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .fact-item:hover {
@@ -378,8 +335,8 @@ body {
 }
 
 .fact-item i {
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    color: #E8DAEF;
+    text-shadow: 0 0 10px rgba(232, 218, 239, 0.8);
 }
 
 /* Плавающие элементы */
@@ -461,11 +418,11 @@ body {
     }
     
     .username {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     .bio {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .stats {
@@ -473,15 +430,8 @@ body {
         gap: 20px;
     }
     
-    .theme-toggle {
-        top: 10px;
-        right: 10px;
-    }
-    
-    .theme-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+    .stat-number {
+        font-size: 2rem;
     }
 }
 
@@ -509,4 +459,4 @@ body {
 .fun-facts {
     animation-delay: 0.4s;
     animation-fill-mode: both;
-      }
+    }
