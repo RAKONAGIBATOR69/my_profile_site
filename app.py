@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -7,12 +7,12 @@ def index():
     profile_data = {
         'name': 'wizonow',
         'telegram_url': 'https://t.me/wizonow',
-        'avatar_url': "{{ url_for('static', filename='images/avatar.jpg') }}",  # Локальный файл
+        'avatar_url': url_for('static', filename='images/avatar.jpg'),  # ПРАВИЛЬНЫЙ путь
         'bio': 'Разработчик | Битмейкер | Настоящий игрок |',
         'skills': ['Python', 'Beatmaking', 'Cooking this shit'],
         'fun_facts': [
             'Могу сделать бит закрытыми глазами',
-            'Превращаю сердца в лёд', 
+            'Превращаю сердца в лёд',
             'Творческий двигатель',
             'Я не люблю пиво'
         ]
